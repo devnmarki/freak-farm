@@ -18,8 +18,6 @@ public class Entity {
 
         this.transform = new Transform();
         this.addComponent(transform);
-
-        this.load();
     }
 
     public void load() {
@@ -45,6 +43,11 @@ public class Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static <T extends Entity> T createEntity(T entity) {
+        entity.load();
+        return entity;
     }
 
     public List<Component> getComponents() {

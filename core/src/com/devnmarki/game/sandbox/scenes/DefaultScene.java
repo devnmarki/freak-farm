@@ -1,5 +1,6 @@
 package com.devnmarki.game.sandbox.scenes;
 
+import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.scenes.Scene;
 import com.devnmarki.game.sandbox.characters.FarmerEntity;
 
@@ -9,7 +10,7 @@ public class DefaultScene extends Scene {
     public void enter() {
         System.out.println("enter default scene");
 
-        addEntity(new FarmerEntity());
+        addEntity(Entity.createEntity(new FarmerEntity()));
     }
 
     @Override
