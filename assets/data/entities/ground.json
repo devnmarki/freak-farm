@@ -4,7 +4,7 @@
   "components": [
     {
       "class": "com.devnmarki.game.engine.physics.BoxCollider",
-      "size": { "x": 200, "y": 16 },
+      "size": { "x": 1300, "y": 16 },
       "bodyType": "static"
     }
   ]

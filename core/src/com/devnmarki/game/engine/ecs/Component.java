@@ -1,5 +1,9 @@
 package com.devnmarki.game.engine.ecs;
 
+import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.math.Vector2;
+import com.devnmarki.game.engine.scenes.SceneManager;
+
 public abstract class Component {
 
     protected Entity entity = null;
@@ -12,6 +16,10 @@ public abstract class Component {
 
     public void setEntity(Entity entity) {
         this.entity = entity;
+    }
+
+    public void instantiate(Entity entity) {
+        SceneManager.currentScene.addEntity(entity);
     }
 
     public <T extends Component> T getComponent(Class<T> type) {

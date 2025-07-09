@@ -10,10 +10,16 @@ public class Sprite {
 
     private Texture texture;
     private TextureRegion textureRegion;
+    private boolean flip;
 
-    public Sprite(Texture texture) {
+    public Sprite(Texture texture, boolean flip) {
         this.texture = texture;
         this.textureRegion = new TextureRegion(texture);
+        this.flip = flip;
+    }
+
+    public Sprite(Texture texture) {
+        this(texture, false);
     }
 
     public TextureRegion getTexture() {
@@ -26,9 +32,19 @@ public class Sprite {
             public Sprite deserialize(JsonElement json, java.lang.reflect.Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
                 JsonObject obj = json.getAsJsonObject();
                 String texture = obj.get("texture").getAsString();
-                return new Sprite(new Texture(texture));
+                boolean flip = obj.get("flip").getAsBoolean();
+
+                return new Sprite(new Texture(texture), flip);
             }
         });
+    }
+
+    public void setFlip(boolean flip) {
+        this.flip = flip;
+    }
+
+    public boolean isFlip() {
+        return flip;
     }
 
 }
