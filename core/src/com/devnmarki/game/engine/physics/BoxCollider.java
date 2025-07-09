@@ -32,7 +32,10 @@ public class BoxCollider extends Collider {
         );
     }
 
-    private void createBody() {
+    @Override
+    public void createBody() {
+        super.createBody();
+
         if (body != null) return;
 
         BodyDef bodyDef = new BodyDef();
@@ -52,7 +55,7 @@ public class BoxCollider extends Collider {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1f;
-        fixtureDef.friction = 0f;
+        fixtureDef.friction = 0.8f;
         fixtureDef.restitution = 0f;
 
         fixture = body.createFixture(fixtureDef);

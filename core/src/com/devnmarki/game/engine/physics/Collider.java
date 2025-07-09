@@ -10,26 +10,18 @@ import com.devnmarki.game.engine.math.Vector2;
 public abstract class Collider extends Component {
 
     public Body body;
-    public String bodyType = "static";
 
-    protected BodyDef.BodyType type;
+    protected BodyDef.BodyType type = BodyDef.BodyType.StaticBody;
 
     protected Fixture fixture;
 
     @Override
     public void onStart() {
         super.onStart();
+    }
 
-        switch(bodyType) {
-            case "static":
-                type = BodyDef.BodyType.StaticBody;
-                break;
-            case "dynamic":
-                type = BodyDef.BodyType.DynamicBody;
-                break;
-            default:
-                break;
-        }
+    public void createBody() {
+
     }
 
     public void destroyBody() {
@@ -44,6 +36,10 @@ public abstract class Collider extends Component {
 
     public void setType(BodyDef.BodyType type) {
         this.type = type;
+    }
+
+    public Body getBody() {
+        return body;
     }
 
 }

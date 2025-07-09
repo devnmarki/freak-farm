@@ -1,11 +1,8 @@
 package com.devnmarki.game.sandbox.scenes;
 
 import com.devnmarki.game.engine.data.EntityReader;
-import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.math.Vector2;
-import com.devnmarki.game.engine.physics.ColliderEntity;
 import com.devnmarki.game.engine.scenes.Scene;
-import com.devnmarki.game.sandbox.characters.FarmerEntity;
 
 public class DefaultScene extends Scene {
 

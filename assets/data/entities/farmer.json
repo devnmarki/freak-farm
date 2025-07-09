@@ -13,8 +13,15 @@
     {
       "class": "com.devnmarki.game.engine.physics.BoxCollider",
       "size": { "x": 6, "y": 16 },
-      "offset": { "x": 13, "y": 8 },
-      "bodyType": "dynamic"
+      "offset": { "x": 13, "y": 8 }
+    },
+    {
+      "class": "com.devnmarki.game.engine.physics.Rigidbody"
+    },
+    {
+      "class": "com.devnmarki.game.sandbox.components.characters.Farmer",
+      "speed": 3,
+      "jumpForce": 5
     }
   ]
 }
