@@ -8,23 +8,9 @@ import com.devnmarki.game.engine.math.Vector2;
 
 public class BoxCollider extends Collider {
 
-    public Vector2 size;
-    public Vector2 offset;
-    public boolean solid;
-
-    public BoxCollider(Vector2 size, Vector2 offset, boolean solid) {
-        this.size = size;
-        this.offset = offset;
-        this.solid = solid;
-    }
-
-    public BoxCollider(Vector2 size, Vector2 offset) {
-        this(size, offset, true);
-    }
-
-    public BoxCollider(Vector2 size) {
-        this(size, new Vector2(0f), true);
-    }
+    public Vector2 size = new Vector2(1f, 1f);
+    public Vector2 offset = new Vector2(0f, 0f);
+    public boolean solid = true;
 
     @Override
     public void onStart() {
@@ -41,19 +27,17 @@ public class BoxCollider extends Collider {
 
         // set entity transfrom position to body position
         entity.getTransform().position = new Vector2(
-            body.getPosition().x * Engine.PPM - offset.x,
-            body.getPosition().y * Engine.PPM - offset.y
+            body.getPosition().x * Engine.PPM - (offset.x * Engine.scale),
+            body.getPosition().y * Engine.PPM - (offset.y * Engine.scale)
         );
     }
 
     private void createBody() {
         if (body != null) return;
 
-        System.out.println("Creating body at: " + entity.getTransform().position);
-
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = type;
-        bodyDef.position.set((entity.getTransform().position.x + offset.x) / Engine.PPM, (entity.getTransform().position.y + offset.y) / Engine.PPM);
+        bodyDef.position.set((entity.getTransform().position.x + (offset.x * Engine.scale)) / Engine.PPM, (entity.getTransform().position.y + (offset.y * Engine.scale)) / Engine.PPM);
         bodyDef.fixedRotation = true;
         bodyDef.bullet = (type == BodyDef.BodyType.DynamicBody);
 
@@ -63,7 +47,7 @@ public class BoxCollider extends Collider {
         float halfHeight = size.y / 2f / Engine.PPM;
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(halfWidth, halfHeight, new com.badlogic.gdx.math.Vector2(halfWidth, halfHeight), 0f);
+        shape.setAsBox(halfWidth * Engine.scale, halfHeight * Engine.scale, new com.badlogic.gdx.math.Vector2(halfWidth * Engine.scale, halfHeight * Engine.scale), 0f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
@@ -72,7 +56,7 @@ public class BoxCollider extends Collider {
         fixtureDef.restitution = 0f;
 
         fixture = body.createFixture(fixtureDef);
-        fixture.setSensor(solid);
+        fixture.setSensor(!solid);
         fixture.setUserData(this);
         body.setUserData(entity);
 

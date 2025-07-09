@@ -4,14 +4,8 @@ import com.devnmarki.game.engine.math.Vector2;
 
 public class Transform extends Component {
 
-    public Vector2 position;
-    public Vector2 size;
-    public float rotation;
-
-    public Transform() {
-        this.position = Vector2.ZERO;
-        this.size = Vector2.ONE;
-        this.rotation = 0f;
-    }
+    public Vector2 position = new Vector2();
+    public Vector2 size = new Vector2();
+    public float rotation = 0f;
 
 }

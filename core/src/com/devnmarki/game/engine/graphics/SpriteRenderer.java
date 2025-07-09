@@ -9,15 +9,6 @@ public class SpriteRenderer extends Component {
     public Sprite sprite;
     public Color color;
 
-    public SpriteRenderer(Sprite sprite, Color color) {
-        this.sprite = sprite;
-        this.color = color;
-    }
-
-    public SpriteRenderer(Sprite sprite) {
-        this(sprite, Color.WHITE);
-    }
-
     @Override
     public void onStart() {
         super.onStart();

@@ -7,18 +7,21 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.devnmarki.game.engine.graphics.Sprite;
 import com.devnmarki.game.engine.scenes.SceneManager;
 
 public class Engine {
 
     private static final Engine instance = new Engine();
 
+    public static float scale = 4f;
+    public static float gravityScale = -9.81f;
+    public static boolean debugMode = true;
+
     public static final SpriteBatch SPRITE_BATCH = new SpriteBatch();
     public static final ShapeRenderer SHAPE_RENDERER = new ShapeRenderer();
-    public static final World WORLD = new World(new Vector2(0f, 0f), true);
+    public static final World WORLD = new World(new Vector2(0f, gravityScale), true);
     public static final float PPM = 100f;
-
-    public static float scale = 4f;
 
     private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 
@@ -30,8 +33,12 @@ public class Engine {
         return instance;
     }
 
-    public void load() {
+    public static void registerDeserializers() {
+        Sprite.register();
+    }
 
+    public void load() {
+        registerDeserializers();
     }
 
     public void update() {
@@ -45,7 +52,9 @@ public class Engine {
         SHAPE_RENDERER.end();
         SPRITE_BATCH.end();
 
-        debugRenderer.render(WORLD, SPRITE_BATCH.getProjectionMatrix().cpy().scale(Engine.PPM, Engine.PPM, 1));
+        if (debugMode) {
+            debugRenderer.render(WORLD, SPRITE_BATCH.getProjectionMatrix().cpy().scale(Engine.PPM, Engine.PPM, 1));
+        }
     }
 
 }

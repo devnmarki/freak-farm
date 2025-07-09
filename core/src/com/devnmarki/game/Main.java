@@ -31,13 +31,16 @@ public class Main extends ApplicationAdapter {
 			Gdx.app.exit();
 		}
 
-
 		Engine.getInstance().update();
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
 			SceneManager.loadScene("default");
 		} else if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
 			SceneManager.loadScene("main_menu");
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+			Engine.debugMode = !Engine.debugMode;
 		}
 	}
 }

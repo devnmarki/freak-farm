@@ -15,15 +15,13 @@ public class FarmerEntity extends Entity {
 
     @Override
     public void load() {
-        transform.position = new Vector2(100f, 100f);
+        transform.position = new Vector2(300f, 300f);
         transform.size = new Vector2(32f, 32f);
 
-        addComponent(new SpriteRenderer(new Sprite(Assets.Characters.FARMER_TEXTURE)));
-        addComponent(new BoxCollider(new Vector2(6f * Engine.scale, 16f * Engine.scale), new Vector2(13f * Engine.scale, 8f * Engine.scale)));
+        addComponent(new SpriteRenderer());
+        //addComponent(new BoxCollider(new Vector2(6f * Engine.scale, 16f * Engine.scale), new Vector2(13f * Engine.scale, 8f * Engine.scale)));
 
         super.load();
-
-        System.out.println("hello farmer");
     }
 
     @Override
