@@ -1,6 +1,7 @@
 package com.devnmarki.game.engine.scenes;
 
 import com.devnmarki.game.engine.ecs.Entity;
+import com.devnmarki.game.engine.ecs.EntityRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public abstract class Scene {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+        EntityRegistry.register(entity);
     }
 
     public void setIndex(int index) {

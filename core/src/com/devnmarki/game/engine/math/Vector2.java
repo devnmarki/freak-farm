@@ -1,5 +1,12 @@
 package com.devnmarki.game.engine.math;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.devnmarki.game.engine.data.EntityReaderConfig;
+import com.devnmarki.game.engine.graphics.Sprite;
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
+
 public class Vector2 {
 
     public float x;
@@ -38,6 +45,10 @@ public class Vector2 {
 
     public Vector2 cpy() {
         return new Vector2(this);
+    }
+
+    public String convertToString() {
+        return "X: " + this.x + ", Y: " + this.y;
     }
 
     public Vector2 add(Vector2 v) {

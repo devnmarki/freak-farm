@@ -1,8 +1,14 @@
 package com.devnmarki.game.engine.scenes;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.utils.Array;
+import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.ecs.Entity;
+import com.devnmarki.game.engine.ecs.EntityRegistry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SceneManager {
@@ -19,7 +25,8 @@ public class SceneManager {
     public static void updateCurrentScene() {
         if (currentScene == null) return;
 
-        for (Entity e : currentScene.getEntities()) {
+        List<Entity> entitiesCopy = new ArrayList<>(currentScene.getEntities());
+        for (Entity e : entitiesCopy) {
             e.update();
         }
 
@@ -30,6 +37,19 @@ public class SceneManager {
         if (currentScene == null) return;
 
         currentScene.getEntities().clear();
+
+        Array<Body> bodyArray = new Array<>();
+        Engine.WORLD.getBodies(bodyArray);
+
+        for (Body body : bodyArray) {
+            Engine.WORLD.destroyBody(body);
+        }
+
+        EntityRegistry.clear();
+        for (Entity e : currentScene.getEntities()) {
+            EntityRegistry.register(e);
+        }
+
         currentScene.enter();
     }
 

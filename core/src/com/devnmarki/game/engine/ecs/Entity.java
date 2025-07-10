@@ -1,11 +1,15 @@
 package com.devnmarki.game.engine.ecs;
 
+import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.physics.Collider;
+
 import java.util.List;
 import java.util.ArrayList;
 
 public class Entity {
 
     private List<Component> components = new ArrayList<com.devnmarki.game.engine.ecs.Component>();
+    private List<Collider> colliders = new ArrayList<>();
 
     private String tag;
     private String name;
@@ -18,8 +22,6 @@ public class Entity {
 
         this.transform = new Transform();
         this.addComponent(transform);
-
-        this.load();
     }
 
     public void load() {
@@ -36,7 +38,21 @@ public class Entity {
 
     public void addComponent(Component component) {
         component.setEntity(this);
+
+        if (component instanceof Collider) {
+            colliders.add((Collider) component);
+        }
+
         components.add(component);
+    }
+
+    public void clearColliders() {
+        for (Collider collider : colliders) {
+            if (collider != null && collider.getBody() != null) {
+                Engine.WORLD.destroyBody(collider.getBody());
+            }
+        }
+        colliders.clear();
     }
 
     public void setTag(String tag) {
@@ -47,8 +63,27 @@ public class Entity {
         this.name = name;
     }
 
+    public static <T extends Entity> T createEntity(T entity) {
+        entity.load();
+        return entity;
+    }
+
+    public <T extends Component> T getComponent(Class<T> type) {
+        for (Component comp : components) {
+            if (type.isInstance(comp)) {
+                return type.cast(comp);
+            }
+        }
+
+        return null;
+    }
+
     public List<Component> getComponents() {
         return components;
+    }
+
+    public List<Collider> getColliders() {
+        return colliders;
     }
 
     public String getTag() {

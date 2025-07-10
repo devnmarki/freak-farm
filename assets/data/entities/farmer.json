@@ -1,0 +1,29 @@
+{
+  "name": "Farmer",
+  "tag": "player",
+  "size":  { "x": 32, "y": 32 },
+  "rotation": 0,
+  "components": [
+    {
+      "class": "com.devnmarki.game.engine.graphics.SpriteRenderer",
+      "sprite": {
+        "texture": "sprites/characters/farmer.png",
+        "flip": false
+      }
+    },
+    {
+      "class": "com.devnmarki.game.engine.physics.BoxCollider",
+      "size": { "x": 6, "y": 16 },
+      "offset": { "x": 13, "y": 8 }
+    },
+    {
+      "class": "com.devnmarki.game.engine.physics.Rigidbody"
+    },
+    {
+      "class": "com.devnmarki.game.sandbox.components.characters.Farmer",
+      "speed": 3,
+      "jumpForce": 5,
+      "shootTime": 0.15
+    }
+  ]
+}

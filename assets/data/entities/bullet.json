@@ -1,0 +1,29 @@
+{
+  "name": "Bullet",
+  "tag": "object",
+  "size": { "x": 8, "y": 8 },
+  "components": [
+    {
+      "class": "com.devnmarki.game.engine.graphics.SpriteRenderer",
+      "sprite": {
+        "texture": "sprites/objects/bullet.png",
+        "flip": false
+      }
+    },
+    {
+      "class": "com.devnmarki.game.engine.physics.BoxCollider",
+      "size": { "x": 6, "y": 4 },
+      "offset": { "x": 1, "y": 2 },
+      "solid": false
+    },
+    {
+      "class": "com.devnmarki.game.engine.physics.Rigidbody",
+      "gravityScale": 0
+    },
+    {
+      "class": "com.devnmarki.game.sandbox.components.objects.Bullet",
+      "speed": 10,
+      "lifetime": 0.8
+    }
+  ]
+}
