@@ -55,7 +55,7 @@ public class BoxCollider extends Collider {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1f;
-        fixtureDef.friction = 0.8f;
+        fixtureDef.friction = 0f;
         fixtureDef.restitution = 0f;
 
         fixture = body.createFixture(fixtureDef);

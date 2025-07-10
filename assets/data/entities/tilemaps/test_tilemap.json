@@ -5,6 +5,9 @@
     {
       "class": "com.devnmarki.game.engine.tilemap.Tilemap",
       "mapPath": "assets/maps/test_map.tmx"
+    },
+    {
+      "class": "com.devnmarki.game.engine.tilemap.TilemapCollider"
     }
   ]
 }

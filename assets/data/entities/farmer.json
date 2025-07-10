@@ -22,7 +22,7 @@
     {
       "class": "com.devnmarki.game.sandbox.components.characters.Farmer",
       "speed": 3,
-      "jumpForce": 5,
+      "jumpForce": 6,
       "shootTime": 0.15
     }
   ]
