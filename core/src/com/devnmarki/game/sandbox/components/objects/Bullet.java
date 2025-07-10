@@ -45,4 +45,10 @@ public class Bullet extends Component {
         rb.setVelocity(new Vector2(velocity * speed, rb.getVelocity().y));
     }
 
+    @Override
+    public void onCollisionEnter(Entity other) {
+        super.onCollisionEnter(other);
+
+        destroy();
+    }
 }

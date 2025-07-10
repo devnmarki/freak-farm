@@ -1,7 +1,5 @@
 package com.devnmarki.game.engine;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -9,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.devnmarki.game.engine.ecs.EntityDestroyer;
 import com.devnmarki.game.engine.graphics.Sprite;
+import com.devnmarki.game.engine.physics.CollisionContactListener;
 import com.devnmarki.game.engine.scenes.SceneManager;
 
 public class Engine {
@@ -44,6 +43,7 @@ public class Engine {
 
     public void update() {
         WORLD.step(1 / 60f, 6, 2);
+        WORLD.setContactListener(new CollisionContactListener());
 
         EntityDestroyer.flush();
 
@@ -54,6 +54,9 @@ public class Engine {
 
         SHAPE_RENDERER.end();
         SPRITE_BATCH.end();
+
+        SPRITE_BATCH.setProjectionMatrix(SceneManager.currentScene.getCamera().combined);
+        SHAPE_RENDERER.setProjectionMatrix(SceneManager.currentScene.getCamera().combined);
 
         if (debugMode) {
             debugRenderer.render(WORLD, SPRITE_BATCH.getProjectionMatrix().cpy().scale(Engine.PPM, Engine.PPM, 1));

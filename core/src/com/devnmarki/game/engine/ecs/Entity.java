@@ -1,12 +1,14 @@
 package com.devnmarki.game.engine.ecs;
 
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.physics.Collider;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class Entity {
+public class Entity implements IEntity {
 
     private List<Component> components = new ArrayList<com.devnmarki.game.engine.ecs.Component>();
     private List<Collider> colliders = new ArrayList<>();
@@ -55,6 +57,27 @@ public class Entity {
         colliders.clear();
     }
 
+    @Override
+    public void collisionBegin(Entity other, Vector2 normal, Contact contact) {
+        for (Component c : components) {
+            c.onCollisionEnter(other);
+        }
+    }
+
+    @Override
+    public void collisionEnd(Entity other) {
+        for (Component c : components) {
+            c.onCollisionExit(other);
+        }
+    }
+
+    @Override
+    public void collisionPreSolve(Entity other, Contact contact) {
+        for (Component c : components) {
+            c.onPreCollision(other);
+        }
+    }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
@@ -97,5 +120,4 @@ public class Entity {
     public Transform getTransform() {
         return transform;
     }
-
 }
