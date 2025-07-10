@@ -18,7 +18,7 @@ public class Rigidbody extends Component {
     public void onStart() {
         super.onStart();
 
-        collider = getComponent(Collider.class);
+        collider = entity.getComponent(Collider.class);
 
         if (collider == null || collider.body == null) return;
 

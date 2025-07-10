@@ -18,19 +18,24 @@ public class Farmer extends Component {
 
     public float speed;
     public float jumpForce;
+    public float shootTime;
 
     private float input = 0f;
     private int facingDir = 0;
+
     private Vector2 shootPoint = new Vector2();
+    private float shootTimer = 0f;
 
     @Override
     public void onStart() {
         super.onStart();
 
-        rb = getComponent(Rigidbody.class);
-        sr = getComponent(SpriteRenderer.class);
+        rb = entity.getComponent(Rigidbody.class);
+        sr = entity.getComponent(SpriteRenderer.class);
 
         shootPoint = new Vector2(entity.getTransform().position.x + (26f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
+
+        shootTimer = shootTime;
     }
 
     @Override
@@ -62,7 +67,8 @@ public class Farmer extends Component {
             jump();
         }
 
-        if (Gdx.input.isButtonJustPressed(0)) {
+        shootTimer += Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isButtonPressed(0) && shootTimer >= shootTime) {
             shoot();
         }
     }
@@ -79,10 +85,16 @@ public class Farmer extends Component {
 
     private void shoot() {
         Entity bulletEntity = EntityReader.loadEntity("assets/data/entities/bullet.json", shootPoint);
-        SpriteRenderer bulletSr = bulletEntity.getComponents().get(0).getComponent(SpriteRenderer.class);
+        SpriteRenderer bulletSr = bulletEntity.getComponent(SpriteRenderer.class);
         bulletSr.sprite.setFlip(facingDir != 0);
 
         instantiate(bulletEntity);
+
+        shootTimer = 0f;
+    }
+
+    public int getFacingDir() {
+        return facingDir;
     }
 
 }

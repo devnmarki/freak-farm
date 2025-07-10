@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.ecs.Entity;
+import com.devnmarki.game.engine.ecs.EntityRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +43,11 @@ public class SceneManager {
 
         for (Body body : bodyArray) {
             Engine.WORLD.destroyBody(body);
+        }
+
+        EntityRegistry.clear();
+        for (Entity e : currentScene.getEntities()) {
+            EntityRegistry.register(e);
         }
 
         currentScene.enter();

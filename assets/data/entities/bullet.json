@@ -21,7 +21,9 @@
       "gravityScale": 0
     },
     {
-      "class": "com.devnmarki.game.sandbox.components.objects.Bullet"
+      "class": "com.devnmarki.game.sandbox.components.objects.Bullet",
+      "speed": 10,
+      "lifetime": 0.8
     }
   ]
 }
