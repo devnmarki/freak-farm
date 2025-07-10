@@ -53,22 +53,22 @@ public class Farmer extends Component {
     }
 
     private void handleInputs() {
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             input = -1f;
             facingDir = 1;
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             input = 1f;
             facingDir = 0;
         } else {
             input = 0f;
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
             jump();
         }
 
         shootTimer += Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isButtonPressed(0) && shootTimer >= shootTime) {
+        if (Gdx.input.isKeyPressed(Input.Keys.X) && shootTimer >= shootTime) {
             shoot();
         }
     }

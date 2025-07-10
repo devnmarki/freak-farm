@@ -1,7 +1,5 @@
 package com.devnmarki.game.engine;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -54,6 +52,9 @@ public class Engine {
 
         SHAPE_RENDERER.end();
         SPRITE_BATCH.end();
+
+        SPRITE_BATCH.setProjectionMatrix(SceneManager.currentScene.getCamera().combined);
+        SHAPE_RENDERER.setProjectionMatrix(SceneManager.currentScene.getCamera().combined);
 
         if (debugMode) {
             debugRenderer.render(WORLD, SPRITE_BATCH.getProjectionMatrix().cpy().scale(Engine.PPM, Engine.PPM, 1));
