@@ -26,6 +26,10 @@ public abstract class Component {
         EntityDestroyer.queue(e);
     }
 
+    public void onCollisionEnter(Entity other) { }
+    public void onCollisionExit(Entity other) { }
+    public void onPreCollision(Entity other) { }
+
     public void setEntity(Entity entity) {
         this.entity = entity;
     }

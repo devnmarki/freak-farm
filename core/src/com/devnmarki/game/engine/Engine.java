@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.devnmarki.game.engine.ecs.EntityDestroyer;
 import com.devnmarki.game.engine.graphics.Sprite;
+import com.devnmarki.game.engine.physics.CollisionContactListener;
 import com.devnmarki.game.engine.scenes.SceneManager;
 
 public class Engine {
@@ -42,6 +43,7 @@ public class Engine {
 
     public void update() {
         WORLD.step(1 / 60f, 6, 2);
+        WORLD.setContactListener(new CollisionContactListener());
 
         EntityDestroyer.flush();
 

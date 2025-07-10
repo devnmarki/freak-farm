@@ -60,7 +60,7 @@ public class BoxCollider extends Collider {
 
         fixture = body.createFixture(fixtureDef);
         fixture.setSensor(!solid);
-        fixture.setUserData(this);
+        fixture.setUserData(entity);
         body.setUserData(entity);
 
         shape.dispose();
