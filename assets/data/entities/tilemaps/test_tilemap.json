@@ -1,0 +1,10 @@
+{
+  "name": "Test Tilemap",
+  "tag": "tilemap",
+  "components": [
+    {
+      "class": "com.devnmarki.game.engine.tilemap.Tilemap",
+      "mapPath": "assets/maps/test_map.tmx"
+    }
+  ]
+}

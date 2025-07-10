@@ -11,13 +11,13 @@ public class DefaultScene extends Scene {
     public void enter() {
         System.out.println("enter default scene");
 
+        addEntity(EntityReader.loadEntity("assets/data/entities/tilemaps/test_tilemap.json", new Vector2()));
         addEntity(EntityReader.loadEntity("assets/data/entities/farmer.json", new Vector2(400, 300)));
         addEntity(EntityReader.loadEntity("assets/data/entities/ground.json", new Vector2(0, -16 * Engine.scale)));
     }
 
     @Override
     public void update() {
-
     }
 
     @Override
