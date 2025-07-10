@@ -3,11 +3,15 @@
   "tag": "tilemap",
   "components": [
     {
-      "class": "com.devnmarki.game.engine.tilemap.Tilemap",
+      "class": "engine.tilemap.Tilemap",
       "mapPath": "assets/maps/test_map.tmx"
     },
     {
-      "class": "com.devnmarki.game.engine.tilemap.TilemapCollider"
+      "class": "engine.tilemap.TilemapCollider"
+    },
+    {
+      "class": "engine.tilemap.TilemapEntityLoader",
+      "layerName": "Entities"
     }
   ]
 }

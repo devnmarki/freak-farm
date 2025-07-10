@@ -1,6 +1,5 @@
 package com.devnmarki.game.sandbox.scenes;
 
-import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.data.EntityReader;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.ecs.EntityRegistry;
@@ -16,7 +15,6 @@ public class DefaultScene extends Scene {
         System.out.println("enter default scene");
 
         addEntity(EntityReader.loadEntity("assets/data/entities/tilemaps/test_tilemap.json", new Vector2()));
-        addEntity(EntityReader.loadEntity("assets/data/entities/farmer.json", new Vector2(600, 300)));
 
         farmerEntity = EntityRegistry.findFirstByTag("player");
     }

@@ -32,6 +32,7 @@ public class TilemapCollider extends Component {
             Vector2 colliderSize = new Vector2(w, h);
 
             Entity colliderEntity = new Entity();
+            colliderEntity.setName("Tilemap Collider");
             colliderEntity.getTransform().position = colliderPos;
             colliderEntity.getTransform().size = colliderSize;
 

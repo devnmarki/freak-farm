@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.scenes.Scene;
 import com.devnmarki.game.engine.scenes.SceneManager;
+import com.devnmarki.game.engine.tilemap.TilemapEntityLoader;
+import com.devnmarki.game.sandbox.EntitiesContainer;
 import com.devnmarki.game.sandbox.scenes.*;
 
 public class Main extends ApplicationAdapter {
@@ -16,6 +18,8 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Engine.getInstance().load();
+
+		TilemapEntityLoader.register("Farmer", EntitiesContainer.Characters.FARMER);
 
         SceneManager.addScene("default", new DefaultScene());
         SceneManager.addScene("main_menu", new MainMenuScene());

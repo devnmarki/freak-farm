@@ -41,7 +41,7 @@ public class EntityReader {
             String className = componentJson.get("class").getAsString();
 
             try {
-                Class<?> clazz = Class.forName(className);
+                Class<?> clazz = Class.forName("com.devnmarki.game." + className);
                 Object rawInstance = clazz.getDeclaredConstructor().newInstance();
 
                 if (!(rawInstance instanceof Component)) {
