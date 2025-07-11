@@ -3,13 +3,16 @@ package com.devnmarki.game.sandbox.components.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.data.EntityReader;
 import com.devnmarki.game.engine.ecs.Component;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.graphics.SpriteRenderer;
+import com.devnmarki.game.engine.graphics.Spritesheet;
 import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.physics.Rigidbody;
+import com.devnmarki.game.sandbox.Assets;
 
 public class Farmer extends Component {
 
@@ -26,6 +29,8 @@ public class Farmer extends Component {
     private Vector2 shootPoint = new Vector2();
     private float shootTimer = 0f;
 
+    private Spritesheet animSheet;
+
     @Override
     public void onStart() {
         super.onStart();
@@ -36,6 +41,9 @@ public class Farmer extends Component {
         shootPoint = new Vector2(entity.getTransform().position.x + (26f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
 
         shootTimer = shootTime;
+
+        animSheet = new Spritesheet(new TextureRegion(Assets.Characters.FARMER_TEXTURE), 8, 2, new Vector2(32), false);
+        sr.sprite = animSheet.getSprite(0);
     }
 
     @Override
@@ -76,7 +84,8 @@ public class Farmer extends Component {
     private void move() {
         rb.setVelocity(new Vector2(input * speed, rb.getVelocity().y));
 
-        sr.sprite.setFlip(facingDir != 0);
+        if (sr.sprite != null)
+            sr.sprite.setFlip(facingDir != 0);
     }
 
     private void jump() {

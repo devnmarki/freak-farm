@@ -5,16 +5,12 @@
   "rotation": 0,
   "components": [
     {
-      "class": "engine.graphics.SpriteRenderer",
-      "sprite": {
-        "texture": "sprites/characters/farmer.png",
-        "flip": false
-      }
+      "class": "engine.graphics.SpriteRenderer"
     },
     {
       "class": "engine.physics.BoxCollider",
       "size": { "x": 6, "y": 16 },
-      "offset": { "x": 13, "y": 8 }
+      "offset": { "x": 13, "y": -24  }
     },
     {
       "class": "engine.physics.Rigidbody"
