@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.devnmarki.game.engine.Engine;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.math.Vector2;
 
 public abstract class Collider extends Component {

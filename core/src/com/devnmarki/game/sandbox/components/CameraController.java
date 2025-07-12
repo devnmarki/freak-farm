@@ -1,9 +1,8 @@
 package com.devnmarki.game.sandbox.components;
 
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.ecs.EntityRegistry;
-import com.devnmarki.game.engine.scenes.CameraEntity;
 import com.devnmarki.game.engine.scenes.SceneManager;
 
 public class CameraController extends Component {

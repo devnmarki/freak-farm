@@ -5,24 +5,24 @@
   "rotation": 0,
   "components": [
     {
-      "class": "engine.graphics.SpriteRenderer"
+      "class": "Sprite Renderer"
     },
     {
-      "class": "engine.physics.BoxCollider",
+      "class": "Box Collider",
       "size": { "x": 6, "y": 16 },
       "offset": { "x": 1, "y": -4  }
     },
     {
-      "class": "engine.physics.Rigidbody"
+      "class": "Rigidbody"
     },
     {
-      "class": "sandbox.components.characters.Farmer",
+      "class": "Farmer",
       "speed": 3,
       "jumpForce": 6.5,
       "shootTime": 0.15
     },
     {
-      "class": "engine.animation.Animator"
+      "class": "Animator"
     }
   ]
 }

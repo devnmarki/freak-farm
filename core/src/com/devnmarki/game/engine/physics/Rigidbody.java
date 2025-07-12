@@ -2,7 +2,7 @@ package com.devnmarki.game.engine.physics;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.devnmarki.game.engine.Engine;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.math.Vector2;
 
 public class Rigidbody extends Component {

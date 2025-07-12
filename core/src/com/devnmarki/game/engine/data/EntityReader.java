@@ -1,9 +1,8 @@
 package com.devnmarki.game.engine.data;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.ecs.Entity;
-import com.devnmarki.game.engine.graphics.Sprite;
+import com.devnmarki.game.engine.ecs.component.ComponentRegistry;
 import com.devnmarki.game.engine.math.Vector2;
 import com.google.gson.*;
 
@@ -41,7 +40,12 @@ public class EntityReader {
             String className = componentJson.get("class").getAsString();
 
             try {
-                Class<?> clazz = Class.forName("com.devnmarki.game." + className);
+                Class<? extends Component> clazz = ComponentRegistry.get(className);
+                if (clazz == null) {
+                    System.err.println("Component class not found for: " + className);
+                    continue;
+                }
+
                 Object rawInstance = clazz.getDeclaredConstructor().newInstance();
 
                 if (!(rawInstance instanceof Component)) {

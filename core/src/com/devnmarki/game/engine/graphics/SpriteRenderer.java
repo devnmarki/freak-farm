@@ -1,7 +1,7 @@
 package com.devnmarki.game.engine.graphics;
 
 import com.devnmarki.game.engine.Engine;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 
 public class SpriteRenderer extends Component {
 

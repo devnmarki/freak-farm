@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.ecs.component.ComponentRegistry;
 import com.devnmarki.game.engine.scenes.SceneManager;
 import com.devnmarki.game.engine.tilemap.TilemapEntityLoader;
 import com.devnmarki.game.sandbox.EntitiesContainer;
+import com.devnmarki.game.sandbox.components.characters.Farmer;
+import com.devnmarki.game.sandbox.components.objects.Bullet;
 import com.devnmarki.game.sandbox.scenes.*;
 
 public class Main extends ApplicationAdapter {
@@ -15,6 +18,9 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Engine.getInstance().load();
+
+		ComponentRegistry.register("Farmer", Farmer.class);
+		ComponentRegistry.register("Bullet", Bullet.class);
 
 		TilemapEntityLoader.register("Farmer", EntitiesContainer.Characters.FARMER);
 

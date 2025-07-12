@@ -1,7 +1,7 @@
 package com.devnmarki.game.sandbox.components.objects;
 
 import com.badlogic.gdx.Gdx;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.ecs.EntityRegistry;
 import com.devnmarki.game.engine.math.Vector2;

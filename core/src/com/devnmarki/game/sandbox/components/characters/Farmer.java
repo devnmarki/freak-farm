@@ -2,13 +2,12 @@ package com.devnmarki.game.sandbox.components.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.animation.Animation;
 import com.devnmarki.game.engine.animation.Animator;
 import com.devnmarki.game.engine.data.EntityReader;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.graphics.SpriteRenderer;
 import com.devnmarki.game.engine.graphics.Spritesheet;

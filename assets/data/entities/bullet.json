@@ -4,24 +4,24 @@
   "size": { "x": 8, "y": 8 },
   "components": [
     {
-      "class": "engine.graphics.SpriteRenderer",
+      "class": "Sprite Renderer",
       "sprite": {
         "texture": "sprites/objects/bullet.png",
         "flip": false
       }
     },
     {
-      "class": "engine.physics.BoxCollider",
+      "class": "Box Collider",
       "size": { "x": 6, "y": 4 },
       "offset": { "x": -2, "y": -1 },
       "solid": false
     },
     {
-      "class": "engine.physics.Rigidbody",
+      "class": "Rigidbody",
       "gravityScale": 0
     },
     {
-      "class": "sandbox.components.objects.Bullet",
+      "class": "Bullet",
       "speed": 10,
       "lifetime": 0.8
     }

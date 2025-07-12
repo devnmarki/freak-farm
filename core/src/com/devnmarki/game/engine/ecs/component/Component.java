@@ -1,5 +1,7 @@
-package com.devnmarki.game.engine.ecs;
+package com.devnmarki.game.engine.ecs.component;
 
+import com.devnmarki.game.engine.ecs.Entity;
+import com.devnmarki.game.engine.ecs.EntityDestroyer;
 import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.scenes.SceneManager;
 

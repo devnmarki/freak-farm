@@ -1,6 +1,6 @@
 package com.devnmarki.game.engine.animation;
 
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.graphics.SpriteRenderer;
 
 import java.util.HashMap;

@@ -4,13 +4,11 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.data.EntityReader;
-import com.devnmarki.game.engine.ecs.Component;
-import com.devnmarki.game.engine.ecs.Entity;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.math.Vector2;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class TilemapEntityLoader extends Component {
 

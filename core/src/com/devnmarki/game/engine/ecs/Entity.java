@@ -2,6 +2,7 @@ package com.devnmarki.game.engine.ecs;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.physics.Collider;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class Entity implements IEntity {
 
-    private List<Component> components = new ArrayList<com.devnmarki.game.engine.ecs.Component>();
+    private List<Component> components = new ArrayList<Component>();
     private List<Collider> colliders = new ArrayList<>();
 
     private String tag;

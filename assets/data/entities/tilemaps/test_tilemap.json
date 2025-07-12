@@ -3,14 +3,14 @@
   "tag": "tilemap",
   "components": [
     {
-      "class": "engine.tilemap.Tilemap",
+      "class": "Tilemap",
       "mapPath": "assets/maps/test_map.tmx"
     },
     {
-      "class": "engine.tilemap.TilemapCollider"
+      "class": "Tilemap Collider"
     },
     {
-      "class": "engine.tilemap.TilemapEntityLoader",
+      "class": "Tilemap Entity Loader",
       "layerName": "Entities"
     }
   ]

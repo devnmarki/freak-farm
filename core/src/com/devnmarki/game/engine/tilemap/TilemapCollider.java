@@ -2,7 +2,7 @@ package com.devnmarki.game.engine.tilemap;
 
 import com.badlogic.gdx.maps.*;
 import com.devnmarki.game.engine.Engine;
-import com.devnmarki.game.engine.ecs.Component;
+import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.physics.BoxCollider;

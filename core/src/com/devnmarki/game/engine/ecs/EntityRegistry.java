@@ -1,5 +1,7 @@
 package com.devnmarki.game.engine.ecs;
 
+import com.devnmarki.game.engine.ecs.component.Component;
+
 import java.util.*;
 
 public class EntityRegistry {
