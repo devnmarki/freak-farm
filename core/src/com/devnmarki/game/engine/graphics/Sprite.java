@@ -19,10 +19,6 @@ public class Sprite {
         this(texture, false);
     }
 
-    public TextureRegion getTexture() {
-        return texture;
-    }
-
     public static void register() {
         EntityReaderConfig.registerDeserializer(Sprite.class, new JsonDeserializer<Sprite>() {
             @Override
@@ -37,7 +33,15 @@ public class Sprite {
     }
 
     public void setFlip(boolean flip) {
-        this.flip = flip;
+        texture.flip(false, false);
+        if (this.flip != flip) {
+            texture.flip(true, false);
+            this.flip = flip;
+        }
+    }
+
+    public TextureRegion getTexture() {
+        return texture;
     }
 
     public boolean isFlip() {

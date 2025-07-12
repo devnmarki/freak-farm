@@ -54,9 +54,9 @@ public class Farmer extends Component {
         move();
 
         if (facingDir == 0) {
-            shootPoint = new Vector2(entity.getTransform().position.x + (26f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
+            shootPoint = new Vector2(entity.getTransform().position.x + (22f * Engine.scale), entity.getTransform().position.y);
         } else {
-            shootPoint = new Vector2(entity.getTransform().position.x - (2f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
+            shootPoint = new Vector2(entity.getTransform().position.x - (16f * Engine.scale), entity.getTransform().position.y);
         }
     }
 

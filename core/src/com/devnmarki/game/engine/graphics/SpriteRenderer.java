@@ -21,7 +21,7 @@ public class SpriteRenderer extends Component {
         Engine.SPRITE_BATCH.draw(
                 sprite.getTexture(),
                 entity.getTransform().position.x, entity.getTransform().position.y,
-                0, 0,
+                sprite.getTexture().getRegionWidth() / 2f, sprite.getTexture().getRegionHeight() / 2f,
                 sprite.getTexture().getRegionWidth(), sprite.getTexture().getRegionHeight(),
                 Engine.scale, Engine.scale,
                 entity.getTransform().rotation - 90f,

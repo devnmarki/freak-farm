@@ -10,7 +10,7 @@
     {
       "class": "engine.physics.BoxCollider",
       "size": { "x": 6, "y": 16 },
-      "offset": { "x": 13, "y": -24  }
+      "offset": { "x": 1, "y": -4  }
     },
     {
       "class": "engine.physics.Rigidbody"
