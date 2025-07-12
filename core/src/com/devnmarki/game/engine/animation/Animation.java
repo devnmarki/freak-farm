@@ -46,4 +46,12 @@ public class Animation {
         return frames[currentFrame];
     }
 
+    public Spritesheet getSpritesheet() {
+        return spritesheet;
+    }
+
+    public boolean isFlip() {
+        return flip;
+    }
+
 }

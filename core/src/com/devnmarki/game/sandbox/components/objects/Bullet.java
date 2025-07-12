@@ -46,8 +46,8 @@ public class Bullet extends Component {
     }
 
     @Override
-    public void onCollisionEnter(Entity other) {
-        super.onCollisionEnter(other);
+    public void onCollisionEnter(Entity other, Vector2 normal) {
+        super.onCollisionEnter(other, normal);
 
         destroy();
     }

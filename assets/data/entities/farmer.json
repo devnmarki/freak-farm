@@ -20,6 +20,9 @@
       "speed": 3,
       "jumpForce": 6,
       "shootTime": 0.15
+    },
+    {
+      "class": "engine.animation.Animator"
     }
   ]
 }

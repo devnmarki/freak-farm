@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.devnmarki.game.engine.Engine;
+import com.devnmarki.game.engine.animation.Animation;
+import com.devnmarki.game.engine.animation.Animator;
 import com.devnmarki.game.engine.data.EntityReader;
 import com.devnmarki.game.engine.ecs.Component;
 import com.devnmarki.game.engine.ecs.Entity;
@@ -18,6 +20,7 @@ public class Farmer extends Component {
 
     private Rigidbody rb;
     private SpriteRenderer sr;
+    private Animator anim;
 
     public float speed;
     public float jumpForce;
@@ -25,6 +28,7 @@ public class Farmer extends Component {
 
     private float input = 0f;
     private int facingDir = 0;
+    private boolean onGround = false;
 
     private Vector2 shootPoint = new Vector2();
     private float shootTimer = 0f;
@@ -37,13 +41,18 @@ public class Farmer extends Component {
 
         rb = entity.getComponent(Rigidbody.class);
         sr = entity.getComponent(SpriteRenderer.class);
+        anim = entity.getComponent(Animator.class);
 
         shootPoint = new Vector2(entity.getTransform().position.x + (26f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
 
         shootTimer = shootTime;
 
         animSheet = new Spritesheet(new TextureRegion(Assets.Characters.FARMER_TEXTURE), 8, 2, new Vector2(32), false);
-        sr.sprite = animSheet.getSprite(0);
+
+        anim.addAnimation("idle_left", new Animation(animSheet, new int[] { 0, 1, 2, 3}, 0.15f, true, true));
+        anim.addAnimation("idle_right", new Animation(animSheet, new int[] { 0, 1, 2, 3}, 0.15f, true, false));
+        anim.addAnimation("walk_left", new Animation(animSheet, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, true));
+        anim.addAnimation("walk_right", new Animation(animSheet, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, false));
     }
 
     @Override
@@ -52,12 +61,7 @@ public class Farmer extends Component {
 
         handleInputs();
         move();
-
-        if (facingDir == 0) {
-            shootPoint = new Vector2(entity.getTransform().position.x + (22f * Engine.scale), entity.getTransform().position.y);
-        } else {
-            shootPoint = new Vector2(entity.getTransform().position.x - (16f * Engine.scale), entity.getTransform().position.y);
-        }
+        handleAnimations();
     }
 
     private void handleInputs() {
@@ -71,7 +75,7 @@ public class Farmer extends Component {
             input = 0f;
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && onGround) {
             jump();
         }
 
@@ -84,12 +88,16 @@ public class Farmer extends Component {
     private void move() {
         rb.setVelocity(new Vector2(input * speed, rb.getVelocity().y));
 
-        if (sr.sprite != null)
-            sr.sprite.setFlip(facingDir != 0);
+        if (facingDir == 0) {
+            shootPoint = new Vector2(entity.getTransform().position.x + (22f * Engine.scale), entity.getTransform().position.y);
+        } else {
+            shootPoint = new Vector2(entity.getTransform().position.x - (16f * Engine.scale), entity.getTransform().position.y);
+        }
     }
 
     private void jump() {
         rb.setVelocity(new Vector2(rb.getVelocity().x, jumpForce));
+        onGround = false;
     }
 
     private void shoot() {
@@ -100,6 +108,35 @@ public class Farmer extends Component {
         instantiate(bulletEntity);
 
         shootTimer = 0f;
+    }
+
+    private void handleAnimations() {
+        if (facingDir == 0) {
+            if (isMoving()) {
+                anim.play("walk_right");
+            } else {
+                anim.play("idle_right");
+            }
+        } else {
+            if (isMoving()) {
+                anim.play("walk_left");
+            } else {
+                anim.play("idle_left");
+            }
+        }
+    }
+
+    @Override
+    public void onCollisionEnter(Entity other, Vector2 normal) {
+        super.onCollisionEnter(other, normal);
+
+        if (normal.y < 0) {
+            onGround = true;
+        }
+    }
+
+    private boolean isMoving() {
+        return rb.getVelocity().x != 0f;
     }
 
     public int getFacingDir() {
