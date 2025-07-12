@@ -19,13 +19,18 @@ public class SpriteRenderer extends Component {
         if (entity == null || sprite == null) return;
 
         Engine.SPRITE_BATCH.draw(
-                sprite.getTexture().getTexture(),
+                sprite.getTexture(),
                 entity.getTransform().position.x, entity.getTransform().position.y,
-                entity.getTransform().size.x * Engine.scale, entity.getTransform().size.y * Engine.scale,
-                0, 0,
+                sprite.getTexture().getRegionWidth() / 2f, sprite.getTexture().getRegionHeight() / 2f,
                 sprite.getTexture().getRegionWidth(), sprite.getTexture().getRegionHeight(),
-                sprite.isFlip(), false
+                Engine.scale, Engine.scale,
+                entity.getTransform().rotation - 90f,
+                false
         );
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 
 }

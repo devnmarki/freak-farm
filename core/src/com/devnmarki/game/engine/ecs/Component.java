@@ -1,5 +1,6 @@
 package com.devnmarki.game.engine.ecs;
 
+import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.scenes.SceneManager;
 
 public abstract class Component {
@@ -26,7 +27,7 @@ public abstract class Component {
         EntityDestroyer.queue(e);
     }
 
-    public void onCollisionEnter(Entity other) { }
+    public void onCollisionEnter(Entity other, Vector2 normal) { }
     public void onCollisionExit(Entity other) { }
     public void onPreCollision(Entity other) { }
 

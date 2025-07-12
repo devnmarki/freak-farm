@@ -60,7 +60,7 @@ public class Entity implements IEntity {
     @Override
     public void collisionBegin(Entity other, Vector2 normal, Contact contact) {
         for (Component c : components) {
-            c.onCollisionEnter(other);
+            c.onCollisionEnter(other, normal);
         }
     }
 
@@ -99,6 +99,16 @@ public class Entity implements IEntity {
         }
 
         return null;
+    }
+
+    public boolean hasComponent(Class<? extends Component> type) {
+        for (Component comp : components) {
+            if (type.isInstance(comp)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public List<Component> getComponents() {

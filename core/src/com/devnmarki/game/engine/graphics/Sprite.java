@@ -3,27 +3,20 @@ package com.devnmarki.game.engine.graphics;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.devnmarki.game.engine.data.EntityReaderConfig;
-import com.devnmarki.game.engine.math.Vector2;
 import com.google.gson.*;
 
 public class Sprite {
 
-    private Texture texture;
-    private TextureRegion textureRegion;
+    private TextureRegion texture;
     private boolean flip;
 
-    public Sprite(Texture texture, boolean flip) {
+    public Sprite(TextureRegion texture, boolean flip) {
         this.texture = texture;
-        this.textureRegion = new TextureRegion(texture);
         this.flip = flip;
     }
 
-    public Sprite(Texture texture) {
+    public Sprite(TextureRegion texture) {
         this(texture, false);
-    }
-
-    public TextureRegion getTexture() {
-        return textureRegion;
     }
 
     public static void register() {
@@ -34,13 +27,21 @@ public class Sprite {
                 String texture = obj.get("texture").getAsString();
                 boolean flip = obj.get("flip").getAsBoolean();
 
-                return new Sprite(new Texture(texture), flip);
+                return new Sprite(new TextureRegion(new Texture(texture)), flip);
             }
         });
     }
 
     public void setFlip(boolean flip) {
-        this.flip = flip;
+        texture.flip(false, false);
+        if (this.flip != flip) {
+            texture.flip(true, false);
+            this.flip = flip;
+        }
+    }
+
+    public TextureRegion getTexture() {
+        return texture;
     }
 
     public boolean isFlip() {
