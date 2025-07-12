@@ -12,17 +12,19 @@ public abstract class Scene {
 
     private int index;
     private List<Entity> entities = new ArrayList<>();
-    private OrthographicCamera camera;
+    private CameraEntity camera;
 
     protected Scene() {
         this.createCamera();
     }
 
     private void createCamera() {
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.x = Gdx.graphics.getWidth() / 2f;
-        camera.position.y = Gdx.graphics.getHeight() / 2f;
-        camera.update();
+        camera = new CameraEntity(1280, 720);
+        addEntity(camera);
+
+        camera.getCamera().position.x = Gdx.graphics.getWidth() / 2f;
+        camera.getCamera().position.y = Gdx.graphics.getHeight() / 2f;
+        camera.getCamera().update();
     }
 
     public abstract void enter();
@@ -46,8 +48,12 @@ public abstract class Scene {
         return entities;
     }
 
-    public OrthographicCamera getCamera() {
+    public CameraEntity getCameraEntity() {
         return camera;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera.getCamera();
     }
 
 }

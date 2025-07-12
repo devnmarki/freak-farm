@@ -18,7 +18,7 @@
     {
       "class": "sandbox.components.characters.Farmer",
       "speed": 3,
-      "jumpForce": 6,
+      "jumpForce": 6.5,
       "shootTime": 0.15
     },
     {

@@ -5,10 +5,13 @@ import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.ecs.EntityRegistry;
 import com.devnmarki.game.engine.math.Vector2;
 import com.devnmarki.game.engine.scenes.Scene;
+import com.devnmarki.game.sandbox.components.CameraController;
 
 public class DefaultScene extends Scene {
 
-    private Entity farmerEntity;
+    public DefaultScene() {
+        super();
+    }
 
     @Override
     public void enter() {
@@ -16,14 +19,14 @@ public class DefaultScene extends Scene {
 
         addEntity(EntityReader.loadEntity("assets/data/entities/tilemaps/test_tilemap.json", new Vector2()));
 
-        farmerEntity = EntityRegistry.findFirstByTag("player");
+        getCameraEntity().addComponent(new CameraController());
+        getCameraEntity().load();
+        addEntity(getCameraEntity());
     }
 
     @Override
     public void update() {
-        getCamera().position.x = farmerEntity.getTransform().position.x + (farmerEntity.getTransform().size.x / 2f);
-        getCamera().position.y = farmerEntity.getTransform().position.y + (farmerEntity.getTransform().size.y / 2f);
-        getCamera().update();
+
     }
 
     @Override
