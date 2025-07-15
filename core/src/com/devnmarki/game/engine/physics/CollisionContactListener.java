@@ -52,13 +52,16 @@ public class CollisionContactListener implements ContactListener {
         Entity entityA = (Entity) fa.getBody().getUserData();
         Entity entityB = (Entity) fb.getBody().getUserData();
 
-        if (entityA != null) {
-            entityA.collisionPreSolve((Entity) fb.getUserData(), contact);
+        int layerA = entityA.getLayer();
+        int layerB = entityB.getLayer();
+
+        if (!LayerCollision.canCollide(layerA, layerB)){
+            contact.setEnabled(false);
+            return;
         }
 
-        if (entityB != null) {
-            entityB.collisionPreSolve((Entity) fa.getUserData(), contact);
-        }
+        entityA.collisionPreSolve((Entity) fb.getUserData(), contact);
+        entityB.collisionPreSolve((Entity) fa.getUserData(), contact);
     }
 
     @Override

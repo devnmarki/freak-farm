@@ -8,4 +8,10 @@ public class EntitiesContainer {
 
     }
 
+    public static class Objects {
+
+        public static final String CRATE = "assets/data/entities/crate.json";
+
+    }
+
 }

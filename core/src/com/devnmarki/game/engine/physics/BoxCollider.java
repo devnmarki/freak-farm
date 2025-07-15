@@ -1,6 +1,7 @@
 package com.devnmarki.game.engine.physics;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.devnmarki.game.engine.Engine;
@@ -11,6 +12,8 @@ public class BoxCollider extends Collider {
     public Vector2 size = new Vector2(1f, 1f);
     public Vector2 offset = new Vector2(0f, 0f);
     public boolean solid = true;
+
+    private FixtureDef fixtureDef;
 
     @Override
     public void onStart() {
@@ -52,7 +55,7 @@ public class BoxCollider extends Collider {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(halfWidth * Engine.scale, halfHeight * Engine.scale, new com.badlogic.gdx.math.Vector2(halfWidth * Engine.scale, halfHeight * Engine.scale), 0f);
 
-        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1f;
         fixtureDef.friction = 0f;
@@ -85,4 +88,10 @@ public class BoxCollider extends Collider {
 
         this.offset = offset;
     }
+
+    @Override
+    public FixtureDef getFixtureDef() {
+        return fixtureDef;
+    }
+
 }

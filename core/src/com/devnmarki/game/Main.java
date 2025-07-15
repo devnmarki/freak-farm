@@ -6,11 +6,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.ecs.component.ComponentRegistry;
+import com.devnmarki.game.engine.physics.LayerCollision;
 import com.devnmarki.game.engine.scenes.SceneManager;
 import com.devnmarki.game.engine.tilemap.TilemapEntityLoader;
+import com.devnmarki.game.sandbox.Constants;
 import com.devnmarki.game.sandbox.EntitiesContainer;
 import com.devnmarki.game.sandbox.components.characters.Farmer;
 import com.devnmarki.game.sandbox.components.objects.Bullet;
+import com.devnmarki.game.sandbox.components.objects.Crate;
 import com.devnmarki.game.sandbox.scenes.*;
 
 public class Main extends ApplicationAdapter {
@@ -21,13 +24,17 @@ public class Main extends ApplicationAdapter {
 
 		ComponentRegistry.register("Farmer", Farmer.class);
 		ComponentRegistry.register("Bullet", Bullet.class);
+		ComponentRegistry.register("Crate", Crate.class);
 
 		TilemapEntityLoader.register("Farmer", EntitiesContainer.Characters.FARMER);
+		TilemapEntityLoader.register("Crate", EntitiesContainer.Objects.CRATE);
 
         SceneManager.addScene("default", new DefaultScene());
         SceneManager.addScene("main_menu", new MainMenuScene());
 
         SceneManager.loadScene("default");
+
+		LayerCollision.setCollision(Constants.CollisionLayers.PLAYER, Constants.CollisionLayers.OBJECT, false);
 	}
 
 	@Override

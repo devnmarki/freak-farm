@@ -3,6 +3,8 @@ package com.devnmarki.game.sandbox.components.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.animation.Animation;
 import com.devnmarki.game.engine.animation.Animator;
@@ -12,14 +14,18 @@ import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.graphics.SpriteRenderer;
 import com.devnmarki.game.engine.graphics.Spritesheet;
 import com.devnmarki.game.engine.math.Vector2;
+import com.devnmarki.game.engine.physics.BoxCollider;
 import com.devnmarki.game.engine.physics.Rigidbody;
 import com.devnmarki.game.sandbox.Assets;
+import com.devnmarki.game.sandbox.Constants;
+import com.devnmarki.game.sandbox.components.objects.Crate;
 
 public class Farmer extends Component {
 
     private Rigidbody rb;
     private SpriteRenderer sr;
     private Animator anim;
+    private BoxCollider collider;
 
     public float speed;
     public float jumpForce;
@@ -32,8 +38,6 @@ public class Farmer extends Component {
     private Vector2 shootPoint = new Vector2();
     private float shootTimer = 0f;
 
-    private Spritesheet animSheet;
-
     @Override
     public void onStart() {
         super.onStart();
@@ -41,17 +45,16 @@ public class Farmer extends Component {
         rb = entity.getComponent(Rigidbody.class);
         sr = entity.getComponent(SpriteRenderer.class);
         anim = entity.getComponent(Animator.class);
+        collider = entity.getComponent(BoxCollider.class);
 
         shootPoint = new Vector2(entity.getTransform().position.x + (26f * Engine.scale), entity.getTransform().position.y + (9f * Engine.scale));
 
         shootTimer = shootTime;
 
-        animSheet = new Spritesheet(new TextureRegion(Assets.Characters.FARMER_TEXTURE), 8, 2, new Vector2(32), false);
-
-        anim.addAnimation("idle_left", new Animation(animSheet, new int[] { 0, 1, 2, 3}, 0.15f, true, true));
-        anim.addAnimation("idle_right", new Animation(animSheet, new int[] { 0, 1, 2, 3}, 0.15f, true, false));
-        anim.addAnimation("walk_left", new Animation(animSheet, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, true));
-        anim.addAnimation("walk_right", new Animation(animSheet, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, false));
+        anim.addAnimation("idle_left", new Animation(Assets.Spritesheets.FARMER_SHEET, new int[] { 0, 1, 2, 3}, 0.15f, true, true));
+        anim.addAnimation("idle_right", new Animation(Assets.Spritesheets.FARMER_SHEET, new int[] { 0, 1, 2, 3}, 0.15f, true, false));
+        anim.addAnimation("walk_left", new Animation(Assets.Spritesheets.FARMER_SHEET, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, true));
+        anim.addAnimation("walk_right", new Animation(Assets.Spritesheets.FARMER_SHEET, new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }, 0.1f, true, false));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.devnmarki.game.engine.ecs.component;
 
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.devnmarki.game.engine.ecs.Entity;
 import com.devnmarki.game.engine.ecs.EntityDestroyer;
 import com.devnmarki.game.engine.math.Vector2;
@@ -31,7 +32,7 @@ public abstract class Component {
 
     public void onCollisionEnter(Entity other, Vector2 normal) { }
     public void onCollisionExit(Entity other) { }
-    public void onPreCollision(Entity other) { }
+    public void onPreCollision(Entity other, Contact contact) { }
 
     public void setEntity(Entity entity) {
         this.entity = entity;

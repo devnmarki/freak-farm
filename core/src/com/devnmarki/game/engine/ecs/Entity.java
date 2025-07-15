@@ -16,6 +16,7 @@ public class Entity implements IEntity {
 
     private String tag;
     private String name;
+    private int layer = 0;
 
     protected Transform transform;
 
@@ -75,7 +76,7 @@ public class Entity implements IEntity {
     @Override
     public void collisionPreSolve(Entity other, Contact contact) {
         for (Component c : components) {
-            c.onPreCollision(other);
+            c.onPreCollision(other, contact);
         }
     }
 
@@ -85,6 +86,10 @@ public class Entity implements IEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLayer(int layer) {
+        this.layer = layer;
     }
 
     public static <T extends Entity> T createEntity(T entity) {
@@ -126,6 +131,10 @@ public class Entity implements IEntity {
 
     public String getName() {
         return name;
+    }
+
+    public int getLayer() {
+        return layer;
     }
 
     public Transform getTransform() {

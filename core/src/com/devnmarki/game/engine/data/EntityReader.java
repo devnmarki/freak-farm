@@ -28,6 +28,10 @@ public class EntityReader {
         entity.setTag(json.get("tag").getAsString());
         entity.setName(json.get("name").getAsString());
 
+        if (json.has("layer")){
+            entity.setLayer(json.get("layer").getAsInt());
+        }
+
         entity.getTransform().position = position;
 
         Vector2 size = gson.fromJson(json.get("size"), Vector2.class);

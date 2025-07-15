@@ -1,0 +1,26 @@
+{
+  "name": "Bullet",
+  "tag": "object",
+  "layer": 2,
+  "size": { "x": 8, "y": 8 },
+  "components": [
+    {
+      "class": "Sprite Renderer"
+    },
+    {
+      "class": "Box Collider",
+      "size": { "x": 10, "y": 8 },
+      "offset": { "x": -3, "y": -2 }
+    },
+    {
+      "class": "Rigidbody",
+      "gravityScale": 1
+    },
+    {
+      "class": "Crate"
+    },
+    {
+      "class": "Animator"
+    }
+  ]
+}

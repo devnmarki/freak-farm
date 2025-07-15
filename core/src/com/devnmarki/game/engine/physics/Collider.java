@@ -3,6 +3,7 @@ package com.devnmarki.game.engine.physics;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.devnmarki.game.engine.Engine;
 import com.devnmarki.game.engine.ecs.component.Component;
 import com.devnmarki.game.engine.math.Vector2;
@@ -42,4 +43,9 @@ public abstract class Collider extends Component {
         return body;
     }
 
+    public Fixture getFixture() {
+        return fixture;
+    }
+
+    public abstract FixtureDef getFixtureDef();
 }
